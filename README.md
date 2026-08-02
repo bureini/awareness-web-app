@@ -12,4 +12,4 @@ A lightweight, client‑side web app that helps you draft messages with differen
 Simply open `index.html` in any modern browser. No build or server required.
 
 ## Deployment
-This app is hosted on GitHub Pages – [link to your live URL once enabled].
+This app is hosted on GitHub Pages – https://bureini.github.io/awareness-web-app/
