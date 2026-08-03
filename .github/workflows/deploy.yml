@@ -26,7 +26,7 @@ jobs:
         with:
           root: ./
           # Ignores warnings about duplicate IDs if you have any (you don't)
-          log_level: warning
+          log_level: 'warning'
 
       # Optional: Check for broken links (great for static sites)
       - name: Check links
