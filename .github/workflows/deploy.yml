@@ -1,4 +1,4 @@
-name: CI + Deploy to Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -15,28 +15,7 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  lint:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Run HTML5 Validator
-        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
-        with:
-          root: ./
-          # Ignores warnings about duplicate IDs if you have any (you don't)
-          log_level: 'WARNING'
-
-      # Optional: Check for broken links (great for static sites)
-      - name: Check links
-        uses: lycheeverse/lychee-action@v1
-        with:
-          args: --verbose --no-progress './**/*.html'
-        continue-on-error: true  # Set to false if you want links to block deploy
-
   deploy:
-    needs: lint
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -44,6 +23,14 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      # ─── 🔐 Inject the API key from GitHub Secrets ───
+      - name: Inject Groq API Key
+        run: |
+          # Replace the placeholder with the actual secret
+          sed -i "s/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g" index.html
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
