@@ -20,14 +20,13 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # ─── 🔐 Inject the API key from GitHub Secrets ───
       - name: Inject Groq API Key
         run: |
-          # Replace the placeholder with the actual secret
           sed -i "s/__GROQ_API_KEY__/${{ secrets.GROQ_API_KEY }}/g" index.html
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
