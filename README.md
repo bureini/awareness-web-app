@@ -14,4 +14,3 @@ Simply open `index.html` in any modern browser. No build or server required.
 ## Deployment
 This app is hosted on GitHub Pages – https://bureini.github.io/awareness-web-app/
 
-https://drive.google.com/file/d/1jtMSSCnIdJJfL0plUWzw8Fu34hpTjyo5/view?pli=1
